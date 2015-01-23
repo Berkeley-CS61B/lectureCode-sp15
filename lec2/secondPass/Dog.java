@@ -14,11 +14,15 @@ public class Dog {
      * Be patient! */
     public void makeNoise() {
         if (size < 10) {
-            System.out.println("yipyipyip.");
+            double[] sound = StdAudio.read("annoying.wav");
+            StdAudio.play(sound);
+            //System.out.println("yipyipyip.");
         } else if (size < 30) {
             System.out.println("bark!");
         } else {
-            System.out.println("woof. woof.");
+            double[] sound = StdAudio.read("malamute.wav");
+            StdAudio.play(sound);
+            //System.out.println("woof. woof.");
         }
     }
 
