@@ -20,6 +20,7 @@ public class DogLoopVisualizable {
         }
     }
 
+
     /* Making the Dog class static is some voodoo magic 
      * that I am using to cram two class
      * files into one file for the purpose of using
