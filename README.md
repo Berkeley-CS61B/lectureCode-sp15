@@ -3,10 +3,10 @@ How Lecture Code Works
 
 In each folder there will be folders including some subset of:
 
-/live1
-/live2
-/examples
-/exercises
+	/live1
+	/live2
+	/examples
+	/exercises
 
 With the following contents:
  - live1: Code developed during 11 AM lecture.
