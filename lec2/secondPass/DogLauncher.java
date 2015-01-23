@@ -3,6 +3,14 @@
  * a spin. */
 public class DogLauncher {
     public static void main(String[] args) {
-        Dog.makeNoise();
+        /* The new keyword tells Java to create
+         * a new Dog, using the Dog class's
+         * constructor. */
+        Dog maya = new Dog(100);
+        Dog yapster = new Dog(5);
+        maya.makeNoise();
+        yapster.makeNoise();
+
+        //Dog.makeNoise();
     }
 } 
