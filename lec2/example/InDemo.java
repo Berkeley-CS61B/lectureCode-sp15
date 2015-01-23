@@ -8,7 +8,14 @@ public class InDemo {
      */
 
     public static void main(String[] args) {
-        
+        In in = new In("http://www.math.sjsu.edu/~hsu/courses/126/first-500-primes.txt");
+        int x;
+        int sum = 0;
+        while (!in.isEmpty()) {
+            x = in.readInt();
+            sum = sum + x;
+        }
+        System.out.println(sum);
     }
 } 
 
