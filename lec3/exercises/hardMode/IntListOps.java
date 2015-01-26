@@ -7,17 +7,14 @@ public class IntListOps {
       * each element incremented by x. L is not allowed
       * to change. */
     public static IntList incrList(IntList L, int x) {
-        if (L == null)
-            return null;
-
-        return new IntList(L.head + x, incrList(L.tail, x));        
+        /* your code here */
     }
 
     /** Returns an IntList identical to L, but with
       * each element incremented by x. Not allowed to use
-      * the 'new' keyword. Solutions after lecture 4. */
+      * the 'new' keyword. */
     public static IntList dincrList(IntList L, int x) {
-        return L;
+        /* your code here */
     }
 
 
