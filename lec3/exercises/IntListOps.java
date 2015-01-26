@@ -3,7 +3,7 @@
  */
 
 public class IntListOps {
-    /** Returns a new IntList identical to L, but with
+    /** Returns an IntList identical to L, but with
       * each element incremented by x. L is not allowed
       * to change. */
     public static IntList incrList(IntList L, int x) {
@@ -13,10 +13,16 @@ public class IntListOps {
         return new IntList(L.head + x, incrList(L.tail, x));        
     }
 
-    /** Returns a new IntList identical to L, but with
+    /** Returns an IntList identical to L, but with
       * each element incremented by x. Not allowed to use
       * the 'new' keyword. */
     public static IntList dincrList(IntList L, int x) {
+        return L;
+    }
+
+    /** Same as incrList, no recursion allowed. The result will be
+      * much uglier than incrList! */
+    public static IntList incrListIterative(IntList L, int x) {
         return L;
     }
 
