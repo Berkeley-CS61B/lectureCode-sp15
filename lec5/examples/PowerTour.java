@@ -14,6 +14,6 @@ public class PowerTour {
     }   
 
     public static void main(String[] args) throws IOException {
-        powerTour(32);
+        powerTour(5);
     }
 } 
