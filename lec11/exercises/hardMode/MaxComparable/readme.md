@@ -1,0 +1,1 @@
+Copy your code from MaxOurComparaable, delete OurComparable.java, and modify your code so that Dog implements the built-in Comparable interface, and finally modify Maximizer so that it is able to use the new version of Dog appropriately.
