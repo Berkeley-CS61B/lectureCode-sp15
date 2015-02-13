@@ -15,7 +15,8 @@ public class TypingPuzzle {
         ((Dog) o2).bark();
 
         Object o3 = (Dog) o2;
-        o3.bark();
+        //o3.bark();
+
     }
 
     /* Ignore the word static in the class definition, we
@@ -23,9 +24,14 @@ public class TypingPuzzle {
      * it is not static. Coming after the midterm */
     public static class Dog {
         String name;
+        int x;
 
         public void bark() {
             System.out.println(name + " barks hello.");
+        }
+
+        public int myInteger() {
+            return 5;
         }
 
         public Dog(String n) {

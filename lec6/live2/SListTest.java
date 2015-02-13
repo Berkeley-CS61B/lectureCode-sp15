@@ -17,7 +17,7 @@ public class SListTest {
 
         L.insertBack(99);
         // 50 -> 10 -> [99]
-        assertEquals(50, L.getFront());
+    assertEquals(50, L.getFront());
         assertEquals(99, L.getBack());
     }
 
