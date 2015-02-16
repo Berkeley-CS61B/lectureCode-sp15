@@ -1,0 +1,1 @@
+Here, create a new interface called OurComparable, and modify Maximizer and Dog accordingly so that Maximizer compiles and provides the correct result when executing.

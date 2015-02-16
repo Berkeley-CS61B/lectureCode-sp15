@@ -1,0 +1,2 @@
+Try to implement the Java equivalent of the Python code shown on this slide using the inheritance on the right as a guide.
+https://docs.google.com/presentation/d/1Il8JiVoruzwe3z9TN8ocmrCXyG3nwY59VoHL_YrEkf4/edit#slide=id.g7924f6120_0231

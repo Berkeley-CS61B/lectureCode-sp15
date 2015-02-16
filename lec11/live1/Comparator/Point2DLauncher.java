@@ -18,8 +18,8 @@ public class Point2DLauncher {
         System.out.println(Arrays.toString(points));
 
         /* Your single line of code here */
-        /*Arrays.sort(points, yComparator);
-        System.out.println("Sorted by y coordinate:");
-        System.out.println(Arrays.toString(points));*/
+        //Arrays.sort(points, yComparator);
+        //System.out.println("Sorted by y coordinate:");
+        //System.out.println(Arrays.toString(points));
     }
 } 
