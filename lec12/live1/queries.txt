@@ -1,0 +1,122 @@
+
+    ??? x = new SledDog("jimmy");
+    Automobile car = new Car();
+    ((Dog) x).bark(car) --> Which bark is called?  Dog or SledDog
+
+Compiler would pick signature:
+sigma = bark(Automobile)
+
+Compiler checks that Dog has a bark(Automobile) method.
+RUNTIME: 
+
+S1: Static type of ((Dog) x) --> Dog
+D1: Dynamic type of ((Dog) x) --> SledDog
+
+
+Two conditions:
+  is bark static?
+  Does SledDog have a method with signature bark(Autombile)
+      Yes
+
+public static void bark()
+
+
+---
+Query 1:
+SledDog extends UsefulDog
+UsefulDog extends Dog
+	* UsefulDog has a bark(Automobile) method
+    * Q: Does SledDog have a bark(Automobile method)?
+         -- It inherits bark(Automobile) from SledDog
+
+---
+Query 2 (a super tricky case that we haven''t talked about much, and for which
+the entire definition on the dslide was based)
+
+SledDog extends UsefulDog
+UsefulDog extends Dog
+	* UsefulDog has a bark(Car) method
+	* SledDog and UsefulDog do NOT have their own bark(Automobile method)
+	  (the Superhero / Batman    Zombie / FastZombie)
+	  (they do technically get the Dog bark(Automobile) method but it seemed
+	  	 like a good idea to ignore this. oh boy...)
+
+
+
+---
+Query 3 (related to query 1):
+SledDog extends UsefulDog
+UsefulDog extends Dog
+	* UsefulDog has a bark(Automobile) method
+	* SledDog does not have its own bark(Automobile method)_
+    * Q: Does SledDog have a bark(Automobile method)?
+	  yes.
+	* Q again: If UsefulDog uses 'this' in bark(Automobile), then is it 
+	   treated as a UsefulDog or a SledDog.
+	     A: In the context of UsefulDog, what is the static type of 'this':
+	        UsefulDog, and the dynamic type is unknown.
+
+INSIDE Horse class:
+  Horse x = this;
+
+
+---
+Query 4 
+SledDog extends UsefulDog
+UsefulDog extends Dog
+	* UsefulDog has a bark(Car) method
+	* SledDog and UsefulDog do NOT have their own bark(Automobile method)
+    * Dog does have bark(Automobile)
+
+Dog x = new SledDog("fish");
+x.bark(new Automobile());
+
+Compile: does Dog (S1) have a method with signature bark(Automobile)
+Runtime: We call Dog''s bark(Automobile) method UNLESS the two conditions
+
+---
+Query 5
+SledDog extends UsefulDog
+UsefulDog extends Dog
+	* UsefulDog has a bark(Automobile) method
+	* SledDog and does NOT have its own bark(Automobile method)
+    * Dog does have bark(Automobile)
+
+Dog x = new SledDog("fish");
+x.bark(new Automobile());
+
+Compile: does Dog (S1) have a method with signature bark(Automobile)
+Runtime: Does SledDog have a method with signature bark(Automobile)
+          Yes it inherited form UsefulDog
+
+---
+Query 6
+SledDog extends UsefulDog
+UsefulDog extends Dog
+	* UsefulDog does not have bark(Automobile) method
+	* SledDog does have bark(Automobile method)
+    * Dog does not have bark(Automobile)
+
+Dog x = new SledDog("fish");
+x.bark(new Automobile());
+
+Compile time: Does Dog have a bark(Automobile) method?
+Will not Compile
+
+---
+Query 7:
+
+SledDog extends UsefulDog
+UsefulDog extends Dog
+	* UsefulDog does not have bark(Automobile) method
+	* SledDog does have bark(Automobile method)
+    * Dog does not have bark(Automobile)
+
+Dog x = new SledDog("fish");
+(SledDog x).bark(new Automobile());
+
+Compile time: E1 is static type SledDog. So does E1 have a bark(Automobile)? yes!~
+Runtime: Use S1''s bark(automobile) method unless D1 has its own method. 
+         But D1 = S1
+
+
