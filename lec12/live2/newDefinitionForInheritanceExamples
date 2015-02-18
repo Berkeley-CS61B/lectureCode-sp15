@@ -1,0 +1,225 @@
+public void makeNoise(): 
+ * makeNoise()
+
+public static Dog maxDog(Dog d1, Dog d2):
+ * maxDog(Dog, Dog)
+
+----
+Dog class:
+  * Suppose it declares method bark(Automobile)
+
+Car clas(s) extends Automobile 
+
+Car car = new Car();
+((Dog) x).bark(car);
+
+E1 = ((Dog ) x)
+E1, static type is: Dog <--- S1
+E1, dynamic type is: ??? <--- D1
+
+bark(car): 
+ sigma of this: bark(Automobile)
+
+COMPILE TIME: Looks at ((Dog) x).bark(car); and says does Dog have
+  some sort of method for which bark(car) is valid. YES!!
+
+RUNTIME: By default we use Dog''s bark(Automobile) method, UNLESS two things are both true:
+	1. bark is non-static
+	2. The dynamic type D1 has its own different bark method
+    (if 1 and 2 are true, then we say that D1 overrides the method)
+
+----
+Query 1:
+
+
+Car clas(s) extends Automobile 
+
+Dog class:
+  * Dog declares bark(Automobile)
+
+SledDog class:
+  * has no bark(Automobile) method of its own
+    (inherits the bark(Automobile) from Dog)
+
+x = new SledDog("frankie");
+car = new Car();
+((Dog) x).bark(car);
+
+Compile time: Dog is S1. Does Dog have a method that matches bark(car), yes it 
+              has bark(Automobile)
+
+Runtime: SledDog is D1. 
+  1. Is bark static? Let''s say no.
+  2. Does D1 have its own different bark method that matches exactly? No, so just use the S1=Dog bark.
+     (equivalent to saying: Yes, we use the one inherited from Dog)
+
+----
+Query 1b:
+Car clas(s) extends Automobile 
+
+Dog class:
+  * Dog declares bark(Automobile) <-- can we use this from outside. not easily.
+
+WorkingDog class:
+  * Dog declares bark(Automobile)
+
+SledDog class:
+  * has no bark(Automobile) method of its own
+    (inherits the bark(Automobile) from WorkingDog)
+
+x = new SledDog("frankie");
+Car car = new Car();
+((Dog) x).bark(car);
+
+Compile time: Dog is S1. Does Dog have a method that matches bark(car), yes it 
+              has bark(Automobile)
+
+Runtime: SledDog is D1. 
+  1. Is bark static? Let''s say no.
+  2. Does D1 have its own different bark method that matches exactly? Yes, the one it got from workingdog,
+     so we call WorkingDog''s bark(Automobile)
+
+---
+Query 2:
+Car clas(s) extends Automobile 
+
+Dog class:
+  * Dog declares bark(Automobile)
+
+WorkingDog class:
+  * Dog declares bark(Car)
+
+SledDog class:
+  * has no bark(Automobile) method of its own
+    (inherits the bark(car) from WorkingDog)
+
+x = new SledDog("frankie");
+Car car = new Car();
+((Dog) x).bark(car);
+
+Compile time: Dog is S1. Does Dog have a method that matches bark(car), yes it 
+              has sigma = bark(Automobile)
+
+Runtime: SledDog is D1. 
+  1. Is bark static? Let''s say no.
+  2. Does D1 have its own different bark method that matches exactly sigma?
+     sigma: bark(Automobile)
+     Somewhat strangely, the Dog bark occurs! (Not WorkingDog)
+
+---
+Query 2b:
+Car clas(s) extends Automobile 
+
+Dog class:
+  * Dog declares bark(Automobile)
+
+WorkingDog class:
+  * WorkingDog declares bark(Car)
+
+SledDog class:
+  * SledDog declares bark(Car) 
+
+x = new SledDog("frankie");
+Car car = new Car();
+((Dog) x).bark(car);
+
+Compile time: Dog is S1. Does Dog have a method that matches bark(car), yes it 
+              has sigma = bark(Automobile)
+
+Runtime: SledDog is D1. 
+  1. Is bark static? Let''s say no.
+  2. Does D1 have its own different bark method that matches exactly sigma?
+     sigma: bark(Automobile)
+     Somewhat strangely, the Dog bark occurs! (Not SledDog)
+
+---
+Query 2c:
+Car clas(s) extends Automobile 
+
+Dog class:
+  * Dog declares bark(Automobile)
+
+WorkingDog class:
+  * Dog declares bark(Car)
+
+SledDog class:
+  * has no bark(Automobile) method of its own
+    (inherits the bark(car) from WorkingDog)
+
+x = new SledDog("frankie");
+Automobile car = new Car();
+((Dog) x).bark(car);
+
+Compile time: Dog is S1. Does Dog have a method that matches bark(car), where 
+              S2=Automobile (since E2=car) its has sigma = bark(Automobile)
+
+Runtime: SledDog is D1. 
+  1. Is bark static? Let''s say no.
+  2. Does D1 have its own different bark method that matches exactly sigma?
+     sigma: bark(Automobile)
+     Somewhat strangely, the Dog bark occurs! (Not WorkingDog)
+
+---
+
+Query 3:
+Car clas(s) extends Automobile 
+
+Dog class:
+  * Dog declares bark(Automobile)
+
+WorkingDog class:
+  * WorkingDog declares bark(Car)
+
+SledDog class:
+  * SledDog declares bark(Car) 
+
+Car x = new SledDog("frankie"); <--- this will break!!
+Car car = new Car();
+((Dog) x).bark(car); <--- Is this cast allowed by the compiler?
+
+---
+Query 3b:
+Car clas(s) extends Automobile 
+
+Dog class:
+  * Dog declares bark(Automobile)
+
+WorkingDog class:
+  * WorkingDog declares bark(Car)
+
+SledDog class:
+  * SledDog declares bark(Car) 
+
+Car x = new Car(); 
+((Dog) x); <--- Is this cast allowed by the compiler?
+
+---
+Query 4:
+
+Does compiler check whether a method exists based on static type?
+ - Yes!
+ - Static means "known at compile time".
+
+---
+Query 5:
+ - If we pass a subclass, will the compiler allow the call?
+   Yes! And the compiler writes down somewhere the exact signature sigma.
+ - If we pass a subclass, does this count as "matching exactly"?
+   No!
+
+---
+Query 6:
+Dog.java:
+void bark(Automobile a) {
+
+}
+
+SomewhereElse.java:
+x.bark(new Car());
+
+Does the fact that we passed a Car to bark affect the static type inside of Dog.java?
+  -- NO! Static types are just what it says.
+
+
+
+
