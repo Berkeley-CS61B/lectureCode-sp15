@@ -2,10 +2,17 @@
  *  @author Josh Hug
  */
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class AList extends AbstractXList {
+import java.util.Iterator;
+
+public class AList extends AbstractXList implements Iterable<Integer>{
     private int[] items;
     private int size; 
+
+    public Iterator<Integer> iterator() {
+        return new AListIterator();
+    }
 
     public class ListPrinter {
         public int i = 0;
@@ -16,13 +23,24 @@ public class AList extends AbstractXList {
         }
     }
 
-    public class AListIterator {
+    public class AListIterator implements Iterator<Integer> {
         public int i = 0;
 
         public Integer next() {
-            Integer returnItem = items[i];
-            i += 1;
-            return returnItem;
+            if (hasNext()) {
+                Integer returnItem = items[i];
+                i += 1;
+                return returnItem;
+            }
+            throw new NoSuchElementException();
+        }
+
+        public boolean hasNext() {
+            return (i < size());
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
         }
     }
 

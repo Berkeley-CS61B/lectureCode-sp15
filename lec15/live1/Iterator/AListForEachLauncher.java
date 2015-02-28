@@ -1,6 +1,8 @@
+
 /** AListForEachLauncher
  *  @author Josh Hug
  */
+import java.util.Iterator;
 
 public class AListForEachLauncher {
     public static void main(String[] args) {
@@ -8,8 +10,12 @@ public class AListForEachLauncher {
         L.insertBack(50);
         L.insertBack(51);
         L.insertBack(52);    
+        Iterator<Integer> ii = L.iterator();
+
         for (int x : L) {
-            System.out.println(x);
+            for (int y : L) {
+                System.out.println(x + " " + y);
+            }
         }
 
     }

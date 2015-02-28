@@ -2,7 +2,7 @@
  *  @author Josh Hug
  */
 
-public class AListIteratorLauncher {
+public class AListIteratorLauncher2 {
     public static void main(String[] args) {
         AList L  = new AList();
         L.insertBack(50);
