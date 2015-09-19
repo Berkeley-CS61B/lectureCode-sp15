@@ -22,12 +22,20 @@ public class PassByValueFigure {
          tuskSize = ts;
       }
 
-      public String toString() {
+/*  For those who are testing in Java Visulaizer toString() function creates problem
+ *  it either throws timeout or keeps running without any output
+ * 
+ *  Removing this functon only for sake of visualizing will helps begginers instead banging thier heads*/
+ 
+/*      public String toString() {
         return String.format("weight: %d, tusk size: %.2f", weight, tuskSize);
       }
-
+/*
+ * I didn't find use of this function simply comment out or remove this function again this creates confusion 
+ * for begginers who are now to OOP
+*/
       public void lose100lbs() {
         weight -= 100;
-      }
+      }*/
    }    
 } 
